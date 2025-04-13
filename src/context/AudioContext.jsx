@@ -8,49 +8,40 @@ export const useAudio = () => useContext(AudioContext);
 export const AudioProvider = ({ children }) => {
   const [sound, setSound] = useState(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false); // Set to unmuted by default
 
   useEffect(() => {
     try {
+      // Use a royalty-free epic music URL
       const backgroundMusic = new Howl({
-        src: ['/assets/audio/song.mp3'], // Update path to your audio file
+        src: ['https://assets.mixkit.co/music/preview/mixkit-epic-orchestra-loop-7-621.mp3'], // Epic orchestral music
         loop: true,
-        volume: 0.9, // Updated to 90% volume
-        autoplay: true,
-        html5: true,
-        preload: true,
+        volume: 1.0, // Set to 100% volume
+        autoplay: true, // Set to autoplay
+        html5: false, // Set to false for better compatibility
+        format: ['mp3'],
         onload: () => {
           console.log('Audio loaded successfully');
-          backgroundMusic.play();
+          backgroundMusic.play(); // Ensure it plays when loaded
         },
         onloaderror: (id, error) => console.error('Audio loading error:', error),
-        onplayerror: (id, error) => {
-          console.error('Audio play error:', error);
-          // Attempt to recover from error
-          backgroundMusic.once('unlock', function() {
-            backgroundMusic.play();
-          });
-        },
+        onplayerror: (id, error) => console.error('Audio play error:', error),
       });
 
       setSound(backgroundMusic);
 
-      // Handle autoplay restrictions
-      const handleUserInteraction = () => {
-        if (backgroundMusic && !backgroundMusic.playing()) {
+      // Try to play the audio as soon as possible
+      setTimeout(() => {
+        try {
           backgroundMusic.play();
           setIsPlaying(true);
+        } catch (error) {
+          console.error('Error playing audio on mount:', error);
         }
-        document.removeEventListener('click', handleUserInteraction);
-      };
-
-      document.addEventListener('click', handleUserInteraction);
+      }, 1000);
 
       return () => {
-        document.removeEventListener('click', handleUserInteraction);
-        if (backgroundMusic) {
-          backgroundMusic.unload();
-        }
+        backgroundMusic.unload();
       };
     } catch (error) {
       console.error('Error initializing audio:', error);

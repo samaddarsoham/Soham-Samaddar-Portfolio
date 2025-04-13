@@ -26,7 +26,7 @@ const ProjectsContent = styled.div`
   width: 100%;
   max-width: 1600px; // Increased from 1200px
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem; // Reduced padding from 2rem
 `;
 
 const SectionTitle = styled(motion.h2)`
@@ -59,9 +59,10 @@ const SectionSubtitle = styled(motion.p)`
 
 const ProjectsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // Adjusted minmax value
+  gap: 1.5rem; // Slightly reduced gap
   margin-bottom: 3rem;
+  width: 100%;
   
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     grid-template-columns: 1fr;
@@ -76,6 +77,7 @@ const ProjectCard = styled(motion.div)`
   overflow: hidden;
   height: 100%;
   position: relative;
+  width: 100%; // Ensure cards take full width of their grid cell
 `;
 
 const ProjectImage = styled.div`

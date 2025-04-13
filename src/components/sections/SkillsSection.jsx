@@ -26,9 +26,10 @@ const SkillsContainer = styled.section`
 const SkillsContent = styled.div`
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1600px; // Increased from 1200px
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem; // Reduced padding from 2rem
 `;
 
 const SectionTitle = styled(motion.h2)`
@@ -61,9 +62,14 @@ const SectionSubtitle = styled(motion.p)`
 
 const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // Adjusted to match projects section
+  gap: 1.5rem; // Matched gap with projects section
   margin-bottom: 4rem;
+  width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SkillCategory = styled(motion.div)`
@@ -74,6 +80,7 @@ const SkillCategory = styled(motion.div)`
   padding: 2rem;
   transition: all 0.3s ease;
   height: 100%;
+  width: 100%; // Ensure cards take full width of their grid cell
 
   &:hover {
     transform: translateY(-10px);
@@ -134,6 +141,9 @@ const ThreeDContainer = styled.div`
   overflow: hidden;
   background: rgba(10, 10, 30, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 1600px; // Added to match content width
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 // 3D Skill Sphere component
