@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import profilePic from '../../assets/images/ppic.jpeg';
 
 const ProfileContainer = styled(motion.div)`
   width: 100%;
@@ -64,6 +65,19 @@ const ProfileImage = styled.div`
   background-position: center;
   position: relative;
   z-index: 2;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Removing the blue gradient overlay */
+    background: transparent;
+    z-index: 3;
+  }
 `;
 
 const ScanEffect = styled(motion.div)`
