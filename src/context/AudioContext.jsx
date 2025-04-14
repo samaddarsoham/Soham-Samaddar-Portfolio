@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { Howl } from 'howler';
+import songFile from '../assets/audio/song.mp3';
 
 const AudioContext = createContext();
 
@@ -12,11 +13,11 @@ export const AudioProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      // Use a royalty-free epic music URL
+      // Use the local song.mp3 file from assets/audio folder
       const backgroundMusic = new Howl({
-        src: ['https://assets.mixkit.co/music/preview/mixkit-epic-orchestra-loop-7-621.mp3'], // Epic orchestral music
+        src: [songFile], // Local audio file
         loop: true,
-        volume: 1.0, // Set to 100% volume
+        volume: 0.75, // Set to 75% volume as requested
         autoplay: true, // Set to autoplay
         html5: false, // Set to false for better compatibility
         format: ['mp3'],

@@ -93,7 +93,7 @@ const AudioAutoplayHelper = () => {
         >
           <Title>Enable Audio Experience</Title>
           <Description>
-            This portfolio features an immersive audio experience with epic orchestral music.
+            This portfolio features an immersive audio experience with background music at 75% volume.
             Click the button below to enable audio and enhance your browsing experience.
           </Description>
           <Button
